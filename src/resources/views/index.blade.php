@@ -38,23 +38,22 @@
 
             @foreach ($todos as $todo)
             <tr class="todo-table__row">
-                <form action="/todos/update" method="post" class="update-form">
-                    @csrf
-                    @method('PATCH')
-                    <td class="todo-table__item">
+                <td class="todo-table__item">
+                    <form action="/todos/update" method="post" id="update-{{ $todo->id }}">
+                        @csrf
+                        @method('PATCH')
                         <input type="hidden" name="id" value="{{ $todo->id }}">
                         <input type="text" name="content" value="{{ $todo->content }}" class="update-form__input">
-                    </td>
-                    <td class="todo-table__button">
-                        <button class="todo-table__button--update">更新</button>
-                    </td>
-                </form>
-                <td class="todo-table__button">
-                    <form action="/todos/delete" method="post" class="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="id" value="{{ $todo->id }}">
-                        <button class="todo-table__button--delete">削除</button>
+                    </form>
+                </td>
+                        <td class="todo-table__button">
+                            <button type="submit" form="update-form-{{ $todo->id }}" class="todo-table__button--update">更新</button>
+
+                        <form action="/todos/delete" method="post" class="delete-form">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="id" value="{{ $todo->id }}">
+                            <button type="submit" class="todo-table__button--delete">削除</button>
                     </form>
                 </td>
             </tr>
