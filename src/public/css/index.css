@@ -12,7 +12,7 @@
     border: 1px solid #badbcc;
     width: 100%;
     padding: 15px 40px;
-    margin: 0 0 80px 0;
+    margin: 0 0 10px 0;
 }
 
 /* エラーメッセージ */
@@ -22,7 +22,7 @@
     border: 1px solid #f5c2c7;
     width: 100%;
     padding: 15px 40px;
-    margin: 0 0 80px 0;
+    margin: 0 0 10px 0;
 }
 .alert-error ul {
     margin: 0;
@@ -37,12 +37,12 @@
 .create-form__input {
     width: 45%;
     padding: 15px;
-    margin: 60px 0 40px 300px;
+    margin: 60px auto 40px 350px;
     border: 1px solid #ccc;
     border-radius: 2px solid #eee;
 }
 .btn-create {
-    width: 15%;
+    width: 10%;
     height: 50px;
     background-color: #000;
     color: #fff;
@@ -50,56 +50,56 @@
     margin: 60px 0 0 80px;
     cursor: pointer;
     font-weight: bold;
+    border-radius: 3px;
 }
 
 /* テーブルスタイル */
 .todo-table__inner {
-    width: 80%;
+    width: 60%;
     margin: 20px auto;
     border-collapse: collapse;
 }
 
-.todo-table__inner td {
-    padding: 10px 0;
+.todo-table__row {
+    border-bottom: 1px solid #ccc;
 }
 
 .todo-table__header {
     text-align: left;
     font-size: 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
 }
 
 .todo-table__item {
-    width: 100%;
-    border-bottom: 1px solid #ccc;
+    width: 80%;
+    padding: 20px 0;
 }
 
 .todo-table__button {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    margin-left: 70px;
-    gap: 20px;
+    width: 20%;
+    padding: 10px 0;
 }
 
-.delete-form {
-    margin: 0;
-    display: inline-flex;
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+    gap: 15px;
+    align-items: center;
 }
 
 .update-form__input {
     width: 100%;
     padding: 10px;
     border: none;
-    margin-top: 20px;
+    outline: none;
 }
 
 .todo-table__button--update,
 .todo-table__button--delete {
     padding: 8px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     color: #fff;
     cursor: pointer;
     font-weight: bold;

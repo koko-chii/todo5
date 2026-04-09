@@ -33,28 +33,30 @@
     <div class="todo__table">
         <table class="todo-table__inner">
             <tr class="todo-table__row">
-                <th class="todo-table__header">Todo</th>
+                <th class="todo-table__header" colspan="2">Todo</th>
             </tr>
 
             @foreach ($todos as $todo)
             <tr class="todo-table__row">
                 <td class="todo-table__item">
-                    <form action="/todos/update" method="post" id="update-{{ $todo->id }}">
+                    <form action="/todos/update" method="post" id="update-form-{{ $todo->id }}">
                         @csrf
                         @method('PATCH')
                         <input type="hidden" name="id" value="{{ $todo->id }}">
                         <input type="text" name="content" value="{{ $todo->content }}" class="update-form__input">
                     </form>
                 </td>
-                        <td class="todo-table__button">
-                            <button type="submit" form="update-form-{{ $todo->id }}" class="todo-table__button--update">更新</button>
+                <td class="todo-table__button">
+                    <div class="button-group">
+                        <button type="submit" form="update-form-{{ $todo->id }}" class="todo-table__button--update">更新</button>
 
                         <form action="/todos/delete" method="post" class="delete-form">
                             @csrf
                             @method('DELETE')
                             <input type="hidden" name="id" value="{{ $todo->id }}">
                             <button type="submit" class="todo-table__button--delete">削除</button>
-                    </form>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach
