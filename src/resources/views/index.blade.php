@@ -5,23 +5,24 @@
 @endsection
 
 @section('content')
+
+@if (session('message'))
+<div class="todo__alert--success">
+    {{ session('message') }}
+</div>
+@endif
+
+@if ($errors->any())
+<div class="todo__alert--danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div class="todo__content">
-    @if (session('message'))
-    <div class="todo__alert--success">
-        {{ session('message') }}
-    </div>
-    @endif
-
-    @if ($errors->any())
-    <div class="todo__alert--danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
     <div class="section">
         <h2 class="section__title">新規作成</h2>
         <form class="create-form" action="/todos" method="post">
@@ -68,29 +69,36 @@
                 <th class="todo-table__header">Todo</th>
                 <th class="todo-table__header">カテゴリ</th>
             </tr>
+
             @foreach ($todos as $todo)
             <tr class="todo-table__row">
+
                 <td class="todo-table__item">
-                    <form class="update-form" action="/todos/update" method="post">
+                    <form class="update-form" action="/todos/update" method="post" id="update-{{ $todo['id'] }}">
                         @method('PATCH')
                         @csrf
                         <input class="update-form__item-input" type="text" name="content" value="{{ $todo['content'] }}">
                         <input type="hidden" name="id" value="{{ $todo['id'] }}">
+                        <input type="hidden" name="category_id" value="{{ $todo['category_id'] }}">
+                    </form>
                 </td>
+
                 <td class="todo-table__item">
                     <span class="todo-table__category">{{ $todo['category']['name'] }}</span>
                 </td>
+
                 <td class="todo-table__item">
-                        <button class="update-form__button-submit" type="submit">更新</button>
-                    </form>
-                </td>
-                <td class="todo-table__item">
-                    <form class="delete-form" action="/todos/delete" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $todo['id'] }}">
-                        <button class="delete-form__button-submit" type="submit">削除</button>
-                    </form>
+                    <div class="todo-table__button-group">
+
+                        <button class="update-form__button-submit" type="submit" form="update-{{ $todo['id'] }}">更新</button>
+
+                        <form class="delete-form" action="/todos/delete" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $todo['id'] }}">
+                            <button class="delete-form__button-submit" type="submit">削除</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
             @endforeach

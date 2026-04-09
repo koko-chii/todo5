@@ -21,7 +21,7 @@ class TodoController extends Controller
         $todo = $request->only(['category_id','content']);
         Todo::create($todo);
 
-        return redirect('/')->with('success', 'Todoを作成しました');
+        return redirect('/')->with('message', 'Todoを作成しました');
     }
 
     public function update(TodoRequest $request)
@@ -29,14 +29,14 @@ class TodoController extends Controller
         $todoData = $request->only(['content']);
         Todo::find($request->id)->update($todoData);
 
-        return redirect('/')->with('success', 'Todoを更新しました');
+        return redirect('/')->with('message', 'Todoを更新しました');
     }
 
     public function destroy(Request $request)
     {
         Todo::find($request->id)->delete();
 
-        return redirect('/')->with('success', 'Todoを削除しました');
+        return redirect('/')->with('message', 'Todoを削除しました');
     }
 
     public function search(Request $request)

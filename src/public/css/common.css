@@ -9,7 +9,7 @@
 .header__inner {
     width: 100%; /* max-widthから変更 */
     margin: 0;
-    padding: 0 10px; /* 左右の余白を調整 */
+    padding: 0 20px; /* 左右の余白を調整 */
     display: flex; /* 横並びにするために必須 */
     justify-content: space-between; /* ロゴとナビを左右両端に配置 */
     align-items: center;
