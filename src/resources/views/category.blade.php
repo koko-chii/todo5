@@ -35,7 +35,7 @@
     <div class="category-table">
         <table class="category-table__inner">
             <tr class="category-table__row">
-                <th class="category-table__header">category</th>
+                <th class="category-table__header">カテゴリ一覧</th>
             </tr>
             @foreach ($categories as $category)
             <tr class="category-table__row">

@@ -89,10 +89,6 @@
     border-bottom: 1px solid #eee;
 }
 
-.todo-table__item {
-    padding: 15px 0;
-    vertical-align: middle;
-}
 
 .update-form__item-input {
     width: 100%;
@@ -100,26 +96,32 @@
     padding: 5px;
 }
 
-
 .todo-table__button-group {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .update-form__button-submit {
     background-color: #0000ff;
     color: #fff;
     border: none;
-    padding: 5px 15px;
+    padding: 10px 15px;
     border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
 }
 
 .delete-form__button-submit {
     background-color: #ff0000;
     color: #fff;
     border: none;
-    padding: 5px 15px;
+    padding: 10px 15px;
+    margin-top: 12px;
     border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    align-self: center;
 }

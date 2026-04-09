@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 Route::middleware('auth')->group(function () {
@@ -19,5 +20,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/categories/update', [CategoryController::class, 'update']);
     Route::delete('/categories/delete', [CategoryController::class, 'destroy']);
 
-
+    Route::get('/mypage', [UserController::class, 'index'])->middleware('auth');
 });

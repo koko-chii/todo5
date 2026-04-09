@@ -96,7 +96,7 @@
 
                         <button class="update-form__button-submit" type="submit" form="update-{{ $todo['id'] }}">更新</button>
 
-                        <form class="delete-form" action="/todos/delete" method="post">
+                        <form class="delete-form" action="/todos/delete" method="post" >
                             @method('DELETE')
                             @csrf
                             <input type="hidden" name="id" value="{{ $todo['id'] }}">

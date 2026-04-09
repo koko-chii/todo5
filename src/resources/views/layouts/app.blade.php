@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -15,35 +14,29 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <div class="header-utilities">
-                <a class="header__logo" href="/">Todo</a>
-                <nav>
-                    <ul class="header__nav">
-                        {{-- ログインしている時だけ表示 --}}
-                        @auth
-                        <li class="header__nav-item">
-                            <a class="header__nav-link" href="/categories">カテゴリ一覧</a>
-                        </li>
-                        <li class="header__nav-item">
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="header__nav-button">ログアウト</button>
-                            </form>
-                        </li>
-                        @endauth
+            <a class="header__logo" href="/">Todo</a>
 
-                        {{-- ログインしていない時（ログイン画面など）に表示 --}}
-                        @guest
-                        <li class="header__nav-item">
-                            <a class="header__nav-link" href="/register">会員登録</a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a class="header__nav-link" href="/login">ログイン</a>
-                        </li>
-                        @endguest
-                    </ul>
-                </nav>
-            </div>
+            <nav class="header-nav">
+                @auth
+                <ul class="header-nav--center">
+                    <li> class="header-nav__item">
+                        <a class="header-nav__link" href="/mypage">マイページ</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button class="header-nav__button">ログアウト</button>
+                        </form>
+                    </li>
+                </ul>
+
+                <ul class="header-nav--right">
+                    <li class="header-nav__item">
+                        <a class="header-nav__link" href="/categories">カテゴリ一覧</a>
+                    </li>
+                </ul>
+                @endauth
+            </nav>
         </div>
     </header>
 
