@@ -1,3 +1,7 @@
+@auth
+    <p>こんにちは、{{ Auth::user()->name }}さん</p>
+@endauth
+
 @extends('layouts.app')
 
 @section('css')
@@ -106,3 +110,4 @@
     </div>
 </div>
 @endsection
+

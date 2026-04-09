@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -14,18 +15,41 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a class="header__logo" href="/">Todo</a>
-            <nav>
-                <ul class="header__nav">
-                    <a class="header__nav-link" href="/categories">カテゴリ一覧</a></l>
-                </ul>
-            </nav>
+            <div class="header-utilities">
+                <a class="header__logo" href="/">Todo</a>
+                <nav>
+                    <ul class="header__nav">
+                        {{-- ログインしている時だけ表示 --}}
+                        @auth
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="/categories">カテゴリ一覧</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="header__nav-button">ログアウト</button>
+                            </form>
+                        </li>
+                        @endauth
+
+                        {{-- ログインしていない時（ログイン画面など）に表示 --}}
+                        @guest
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="/register">会員登録</a>
+                        </li>
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="/login">ログイン</a>
+                        </li>
+                        @endguest
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
     <main>
         @yield('content')
-    </main>>
+    </main>
 </body>
 
 </html>

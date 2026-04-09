@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Todo;
 use App\Http\Requests\TodoRequest;
@@ -11,14 +12,16 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::with('category')->get();
+        $todos = Todo::with('category')->where('user_id', Auth::id())->get();
         $categories = Category::all();
+
         return view('index', compact('todos', 'categories'));
     }
 
     public function store(TodoRequest $request)
     {
         $todo = $request->only(['category_id','content']);
+        $todo['user_id'] = Auth::id();
         Todo::create($todo);
 
         return redirect('/')->with('message', 'Todoを作成しました');
@@ -42,9 +45,9 @@ class TodoController extends Controller
     public function search(Request $request)
     {
 
-        $query = Todo::with('category');
+        $query = Todo::with('category')->where('user_id', Auth::id());
         if ($request->keyword) {
-        $query->where('content',  $request->keyword);
+        $query->where('content', 'LIKE', '%' . $request->keyword . '%');
         }
         if ($request->category_id) {
         $query->where('category_id', $request->category_id);
