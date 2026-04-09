@@ -18,7 +18,7 @@ class TodoController extends Controller
 
     public function store(TodoRequest $request)
     {
-        $todo = $request->only(['content']);
+        $todo = $request->only(['category_id','content']);
         Todo::create($todo);
 
         return redirect('/')->with('success', 'Todoを作成しました');
@@ -39,4 +39,19 @@ class TodoController extends Controller
         return redirect('/')->with('success', 'Todoを削除しました');
     }
 
+    public function search(Request $request)
+    {
+
+        $query = Todo::with('category');
+        if ($request->keyword) {
+        $query->where('content',  $request->keyword);
+        }
+        if ($request->category_id) {
+        $query->where('category_id', $request->category_id);
+        }
+        $todos = $query->get();
+        $categories = Category::all();
+
+        return view('index', compact('todos', 'categories'));
+    }
 }
