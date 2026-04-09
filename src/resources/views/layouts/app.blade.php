@@ -13,16 +13,19 @@
 
 <body>
     <header class="header">
-    <div class="header__inner">
-        <a class="header__logo" href="/">
-            Todo
-        </a>
-    </div>
+        <div class="header__inner">
+            <a class="header__logo" href="/">Todo</a>
+            <nav>
+                <ul class="header__nav">
+                    <a class="header__nav-link" href="/categories">カテゴリ一覧</a></l>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
         @yield('content')
-    </main>
+    </main>>
 </body>
 
 </html>
